@@ -30,7 +30,6 @@ public class ProductServlet extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		super.doGet(req, resp);
 		resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
         String pathInfo = req.getPathInfo();
@@ -68,7 +67,6 @@ public class ProductServlet extends HttpServlet{
 
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		super.doDelete(req, resp);
 		resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
         String pathInfo = req.getPathInfo();
