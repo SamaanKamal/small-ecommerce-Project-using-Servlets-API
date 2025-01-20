@@ -77,7 +77,7 @@ public class ProductServiceImp implements ProductService {
         product.setDescription(rs.getString("description"));
         product.setPrice(rs.getDouble("price"));
         product.setStock(rs.getInt("stock"));
-        product.setCreatedAt(rs.getTimestamp("created_at"));
+        product.setCreatedAt(rs.getTimestamp("created_at").toString());
         return product;
     }
 

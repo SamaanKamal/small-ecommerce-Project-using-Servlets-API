@@ -57,7 +57,7 @@ public class CategoryServiceImp implements CategoryService {
         category.setId(rs.getInt("id"));
         category.setName(rs.getString("name"));
         category.setDescription(rs.getString("description"));
-        category.setCreatedAt(rs.getTimestamp("created_at"));
+        category.setCreatedAt(rs.getTimestamp("created_at").toString());
         return category;
     }
 }

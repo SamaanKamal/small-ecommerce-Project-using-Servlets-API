@@ -6,7 +6,7 @@ public class Category {
 	private Integer id;
     private String name;
     private String description;
-    private Timestamp createdAt;
+    private String createdAt;
     
     
 	public Category() {
@@ -14,7 +14,7 @@ public class Category {
 	}
 
 
-	public Category(String name, String description, Timestamp createdAt) {
+	public Category(String name, String description, String createdAt) {
 		super();
 		this.name = name;
 		this.description = description;
@@ -52,12 +52,12 @@ public class Category {
 	}
 
 
-	public Timestamp getCreatedAt() {
+	public String getCreatedAt() {
 		return createdAt;
 	}
 
 
-	public void setCreatedAt(Timestamp createdAt) {
+	public void setCreatedAt(String createdAt) {
 		this.createdAt = createdAt;
 	}
 

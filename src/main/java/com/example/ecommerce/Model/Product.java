@@ -8,7 +8,7 @@ public class Product {
     private String description;
     private Double price;
     private Integer stock;
-    private Timestamp createdAt;
+    private String createdAt;
     private Integer categoryId;
     
     
@@ -17,7 +17,7 @@ public class Product {
 	}
 
 
-	public Product(String name, String description, Double price, Integer stock, Timestamp createdAt,
+	public Product(String name, String description, Double price, Integer stock, String createdAt,
 			Integer categoryId) {
 		super();
 		this.name = name;
@@ -79,12 +79,12 @@ public class Product {
 	}
 
 
-	public Timestamp getCreatedAt() {
+	public String getCreatedAt() {
 		return createdAt;
 	}
 
 
-	public void setCreatedAt(Timestamp createdAt) {
+	public void setCreatedAt(String createdAt) {
 		this.createdAt = createdAt;
 	}
 
