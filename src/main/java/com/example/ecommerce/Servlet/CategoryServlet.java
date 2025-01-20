@@ -33,7 +33,6 @@ public class CategoryServlet extends HttpServlet{
         resp.setCharacterEncoding("UTF-8");
         PrintWriter out = resp.getWriter();
         String pathInfo = req.getPathInfo();
-        System.out.println("HEllo");
         try {
             if (pathInfo == null || pathInfo.equals("/")) {
                 // Get all categories part
