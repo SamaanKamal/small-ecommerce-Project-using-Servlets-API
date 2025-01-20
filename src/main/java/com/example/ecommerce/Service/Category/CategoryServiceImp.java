@@ -9,6 +9,11 @@ import com.example.ecommerce.DB.DatabaseUtil;
 import com.example.ecommerce.Model.Category;
 
 public class CategoryServiceImp implements CategoryService {
+	
+	public CategoryServiceImp() {
+		super();
+	}
+
 	@Override
 	public Category find(Integer id) throws SQLException {
         String sql = "SELECT * FROM categories WHERE id = ?";
