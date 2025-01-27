@@ -5,17 +5,12 @@ import java.sql.*;
 public class DatabaseInitializer {
 	private static final String CHECK_CATEGORIES = "SELECT COUNT(*) FROM categories";
     
-    public static void initializeData() {
+	public static void initializeData(Connection conn) {
         try {
-            if (isDataInitializationNeeded()) {
-                Connection conn = DatabaseUtil.getConnection();
-                try {
-                    insertCategories(conn);
-                    insertProducts(conn);
-                    System.out.println("Sample data initialized successfully!");
-                } finally {
-                    conn.close();
-                }
+            if (isDataInitializationNeeded(conn)) {
+                insertCategories(conn);
+                insertProducts(conn);
+                System.out.println("Sample data initialized successfully!");
             } else {
                 System.out.println("Database already contains data, skipping initialization.");
             }
@@ -24,9 +19,8 @@ public class DatabaseInitializer {
         }
     }
     
-    private static boolean isDataInitializationNeeded() throws SQLException {
-        try (Connection conn = DatabaseUtil.getConnection();
-             Statement stmt = conn.createStatement();
+	private static boolean isDataInitializationNeeded(Connection conn) throws SQLException {
+        try (Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(CHECK_CATEGORIES)) {
             rs.next();
             return rs.getInt(1) == 0;
