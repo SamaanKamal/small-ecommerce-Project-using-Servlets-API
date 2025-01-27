@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.ecommerce.DB.DatabaseUtil;
+import com.example.ecommerce.Listener.ApplicationContextListener;
 import com.example.ecommerce.Model.Category;
 
 public class CategoryServiceImp implements CategoryService {
@@ -17,8 +18,7 @@ public class CategoryServiceImp implements CategoryService {
 	@Override
 	public Category find(Integer id) throws SQLException {
         String sql = "SELECT * FROM categories WHERE id = ?";
-        try (Connection conn = DatabaseUtil.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (PreparedStatement stmt = ApplicationContextListener.getConnection().prepareStatement(sql)) {
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
@@ -32,8 +32,7 @@ public class CategoryServiceImp implements CategoryService {
     public List<Category> findAll() throws SQLException {
         List<Category> categories = new ArrayList<>();
         String sql = "SELECT * FROM categories";
-        try (Connection conn = DatabaseUtil.getConnection();
-             Statement stmt = conn.createStatement();
+        try (Statement stmt = ApplicationContextListener.getConnection().createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
                 categories.add(mapResultSetToCategory(rs));
@@ -45,8 +44,7 @@ public class CategoryServiceImp implements CategoryService {
 	@Override
     public void remove(Integer id) throws SQLException {
         String sql = "DELETE FROM categories WHERE id = ?";
-        try (Connection conn = DatabaseUtil.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (PreparedStatement stmt = ApplicationContextListener.getConnection().prepareStatement(sql)) {
             stmt.setInt(1, id);
             stmt.executeUpdate();
         }

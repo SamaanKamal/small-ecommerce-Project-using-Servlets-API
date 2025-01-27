@@ -7,6 +7,7 @@ import java.util.List;
 import java.sql.*;
 
 import com.example.ecommerce.DB.DatabaseUtil;
+import com.example.ecommerce.Listener.ApplicationContextListener;
 import com.example.ecommerce.Model.Product;
 
 public class ProductServiceImp implements ProductService {
@@ -19,8 +20,7 @@ public class ProductServiceImp implements ProductService {
 	@Override
 	public Product find(Integer id) throws SQLException {
 		String sql = "SELECT * FROM products WHERE id = ?";
-        try (Connection conn = DatabaseUtil.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (PreparedStatement stmt = ApplicationContextListener.getConnection().prepareStatement(sql)) {
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
@@ -34,8 +34,7 @@ public class ProductServiceImp implements ProductService {
 	public List<Product> findAll() throws SQLException {
 		List<Product> products = new ArrayList<>();
         String sql = "SELECT * FROM products";
-        try (Connection conn = DatabaseUtil.getConnection();
-             Statement stmt = conn.createStatement();
+        try (Statement stmt = ApplicationContextListener.getConnection().createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
                 products.add(mapResultSetToProduct(rs));
@@ -48,8 +47,7 @@ public class ProductServiceImp implements ProductService {
 	public List<Product> findByCategory(Integer categoryId) throws SQLException {
 		List<Product> products = new ArrayList<>();
         String sql = "SELECT * FROM products WHERE category_id = ?";
-        try (Connection conn = DatabaseUtil.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (PreparedStatement stmt = ApplicationContextListener.getConnection().prepareStatement(sql)) {
             stmt.setInt(1, categoryId);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
@@ -62,8 +60,7 @@ public class ProductServiceImp implements ProductService {
 	@Override
 	public void remove(Integer id) throws SQLException {
 		String sql = "DELETE FROM products WHERE id = ?";
-        try (Connection conn = DatabaseUtil.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (PreparedStatement stmt = ApplicationContextListener.getConnection().prepareStatement(sql)) {
             stmt.setInt(1, id);
             stmt.executeUpdate();
         }
